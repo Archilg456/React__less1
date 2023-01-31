@@ -31,21 +31,60 @@ let top = Games.reduce((acc, curr) => {
 console.log(top);
 
    
-//  ..3  
+//  ...3  
 
-class Car {
-   constructor(brand,model, speed,motion) {
+class Cars {
+  constructor(brand, model, speed = 0, motion = "მანქანა გაჩერებულია") {
+      this.brand = brand;
+      this.model = model;
+      this.speed = speed;
+      this.motion = motion;
+  }
 
-   }
+  check_motion() {
+    if (this.speed > 0) {
+      this.motion = "მანქანა მოძრაობს";
+    } else {
+      this.motion = "მანქანა გაჩერებულია";
+    }
+  }
 
+  accelerate(element) {
+    this.speed += element;
+    this.check_motion;
+  }
+
+  brake(element) {
+      this.speed -= element;
+      this.check_motion;
+    }
+
+  emergency_brake() {
+    this.speed = 0;
+    this.check_motion;
+  }
+  status() {
+    return `${this.brand} ${this.model} მოძრაობს ${this.speed} კმ/სთ სიჩქარით და სტატუსია : ${this.motion}`;
+  }
 }
 
+let sportCar = new Cars("Ford", "Mustang");
+
+sportCar.accelerate(175);
+sportCar.check_motion();
+
+
+sportCar.brake(35);
+sportCar.check_motion();
+    
+sportCar.emergency_brake();
+sportCar.check_motion();
+
+
+console.log(sportCar.status());
 
 
 //  ....4 
-
-
-
 
 function addAsync(alpha, beta) {
     return new Promise((res, rej) => {
